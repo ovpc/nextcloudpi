@@ -14,6 +14,10 @@ CONFIRM_=raspberry
 
 DESCRIPTION="Activate or deactivate SSH"
 
+INFOTITLE="SSH notes"
+INFO="In order to enable SSH, the password for user pi can not remain set to the default raspberry. 
+You HAVE to create a NEW password for pi if you want this program to enable SSH, it will fail if you dont!"
+
 install() { :; }
 
 is_active()
