@@ -18,12 +18,18 @@ DESTDIR_=/media/USBdrive/ncp-backups
 INCLUDEDATA_=no
 COMPRESS_=no
 BACKUPLIMIT_=4
+#LETSENCRYPT_=no
 DESCRIPTION="Backup this NC instance to a file"
 
 install()
 {
   cat > /usr/local/bin/ncp-backup <<'EOF'
 #!/bin/bash
+
+##ovpc edit IF LETSENCRYPT SELECTED INCLUDE "PATH TO /ETC/LETSENCRYPT" TO THE BACKUP
+#if [[ "LETSENCRYPT_" == yes ]]; then
+#    local =""
+#fi
 
 DESTDIR="${1:-/media/USBdrive/ncp-backups}"
 INCLUDEDATA="${2:-no}"
