@@ -1,27 +1,27 @@
 #!/bin/bash
 ##name=fail2ban2ufw-extra.sh
-#Copyleft 2017 by Oliver van Praag <oliver _at_ ovpso _d_o_t_ com>
+#Copyleft 2018 by Oliver van Praag <oliver _at_ ovpso _d_o_t_ com>
 # GPL licensed (see end of file) * Use at your own risk!
 #
 # Usage:
 # 
 #   ./fail2ban2ufw-extra.sh needs to be executed by root with crontab
 #
-# ###add to root crontab 
+# ###add to root's crontab 
 #30 6,18 * * * /home/ncp/bin/ufw-ipaddrlist4root.sh
 # 
 #
 
-##reads from fail2ban log, take 8th colum write to file
+##reads banned IP's from fail2ban log, take 8th colum write to file
 cat /var/log/fail2ban.log | grep Ban | awk '{print $8}' OFS='\t' > /home/ncp/bin/fail2ban2ufw4root.txt
 #
 sleep 1
 ##read from file and exec ufw insert 
 while read IPADDR
 do 
-#######	echo "$IPADDR"
+#######	echo "$IPADDR" ###This was for initial testing first part of script###
 	/usr/sbin/ufw insert 1 deny from "$IPADDR"
-done < /home/oliver/bin/fail2ban2ufw4root.txt
+done < /home/ncp/bin/fail2ban2ufw4root.txt
 
 
 # License
